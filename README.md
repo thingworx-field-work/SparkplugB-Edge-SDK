@@ -143,6 +143,14 @@ me.UpdatePropertyValues({
 });
 ```
 
+# Sending messages to the Unified Namespace
+The remote Thing provides a **SendThingProperties** service to send data derived by ThingWorx back onto the UNS. This takes 1 input parameter:
+- ThingName – the name of the Thing you wish to report back to the UNS.
+
+This will send all properties on the specified Thing back to the namespace on the topic structure identified by the UNS Thing’s SparkplugB configuration. Select “Browse Remote Services” to bind the edge service to the platform "Thing":
+
+![remote service](https://github.com/user-attachments/assets/b5872312-45cc-457c-a701-3427cb537b7b)
+
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
 
