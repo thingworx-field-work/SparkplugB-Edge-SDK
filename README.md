@@ -1,6 +1,15 @@
 # SparkplugB-Edge-SDK
 A ThingWorx Java Edge SDK component for integrating ThingWorx with Unified Namespace / SparkplugB architectures.
 
+# Overview
+This is a field-developed ThingWorx edge SDK agent for integrating to a Unified Namespace (UNS) architecture using MQTT and SparkplugB technologies.
+
+This is not core PTC product developed by PTC R&D and must be treated as a field customisation.
+
+The intent is for ThingWorx to integrate to UNS architectures both as an Industrial IIoT application development environment to consume from the UNS, and as a node to contribute new data to the UNS (e.g. OEE metrics).
+
+The extension has been developed using the ThingWorx Java Edge SDK and Eclipse MQTT / SparkplugB libraries for encoding / decoding SparkplugB messages.
+
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
 
