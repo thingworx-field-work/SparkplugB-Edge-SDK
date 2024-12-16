@@ -59,6 +59,33 @@ This section defines the following parameters:
 - **KeepAliveInterval**: Standard MQTT client setting, specified in seconds.
 - **TimeToWait**: Standard MQTT client setting, specified in seconds.
 
+## Configuration - PropertyMappings
+This section identifies which topics this remote "Thing" will subscribe to, and which properties on this "Thing" the resulting JSON payloads will be stored on once the extension has decoded the SparkplugB messages. These property mappings are specified as an array of Topic / Property couplings such as:
+
+```json
+"PropertyMappings": [
+	{
+		"Topic": "spBv1.0/PTC1/DDATA/SC/Sparkplug Device 1",
+		"Property": "PTC1_SC_SP_Device_1_Payload"
+	},
+	{
+		"Topic": "spBv1.0/PTC1/DDATA/SC/Sparkplug Device 2",
+		"Property": "PTC1_SC_SP_Device_2_Payload"
+	},
+	{
+		"Topic": "spBv1.0/+/DBIRTH/+/+",
+		"Property": "DBIRTH"
+	}
+ ],
+```
+The entries in the "Property" field MUST be created as properties on the remote "Thing" within ThingWorx Composer, with the “Base Type” set to JSON. There is no requirement to make these 'persistable' or 'logged'; see later for subscription code to unwrap these payloads. Both '+' (single) and '#' (multiple) wildcards are allowed as defined in the MQTT standard for topic subscriptions.
+
+## Configuration - ApplicationDetails
+This section identifies information populated in the Node Birth certificate issued by ThingWorx when connecting to the Namespace if the previous setting **PublishBirthDeathCertificates** is set to true:
+- **Vendor**: Name of the software vendor for ThingWorx, default is "PTC".
+- **SoftwareVersion**: Version of ThingWorx deployed.
+- **ApplicationName**: Default to "ThingWorx"
+
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
 
