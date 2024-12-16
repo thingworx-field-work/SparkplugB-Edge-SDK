@@ -40,6 +40,25 @@ This section defines the following parameters:
 - **CompressedMessages**: Set to true or false - specify whether message exchanges with the MQTT broker will use GZIP compression.
 - **PublishBirthDeathCertificates**: Set to true or false - specify whether ThingWorx will publish SparkplugB birth / death certificates to the MQTT broker.
 
+## Configuration - MQTTConnectInfo
+This section defines the following parameters:
+- **Hostname**: Hostname of the MQTT broker.
+- **Port**: TCP port that the MQTT broker runs on, typically 8883 for brokers running SSL, 1883 otherwise.
+- **Username**: Username to connect to the MQTT broker if required.
+- **Password**: Password to connect to the MQTT broker if required.
+- **ClientID**: How ThingWorx will identify itself to the MQTT broker.
+- **UsingEncryption**: Set to true or false - specify whether the connection to the MQTT broker will use SSL encryption.
+- **ValidateCertificate**: Set to true or false - set to “true” if the edge agent needs to validate the MQTT broker certificate for SSL-enabled brokers. In this case, create a JKS keystore and import the MQTT broker certificate into the keystore as a “Trusted Certificate”.
+- **TrustStorePath**: If validating the MQTT broker certificate, the path to the JKS store identified above.
+- **TrustStorePassword**: If validating the MQTT broker certificate, the password to access the JKS store identified above.
+- **RetainedMessages**: Standard MQTT client setting, set to true or false.
+- **QoS**: Standard MQTT client setting, identified Qulaity of Service that this edge component will use in MQTT exchanges.
+- **AutomaticReconnect**: Standard MQTT client setting, set to true or false.
+- **CleanSession**: Standard MQTT client setting, set to true or false.
+- **ConnectionTimeout**: Standard MQTT client setting, specified in seconds.
+- **KeepAliveInterval**: Standard MQTT client setting, specified in seconds.
+- **TimeToWait**: Standard MQTT client setting, specified in seconds.
+
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
 
