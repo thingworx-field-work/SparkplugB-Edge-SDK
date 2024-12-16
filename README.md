@@ -8,7 +8,7 @@ This is not core PTC product developed by PTC R&D and must be treated as a field
 
 The intent is for ThingWorx to integrate to UNS architectures both as an Industrial IIoT application development environment to consume from the UNS, and as a node to contribute new data to the UNS (e.g. OEE metrics).
 
-The edge component connects to ThingWorx as a remote "Thing", with UNS topics published to JSON payload properties on the remote "Thing". This "Thing" akso has a remote service to publish ThingWorx information back onto the UNS.
+The edge component connects to ThingWorx as a remote "Thing", with UNS topics published to JSON payload properties on the remote "Thing". This "Thing" also has a remote service to publish ThingWorx information back onto the UNS.
 
 The extension has been developed using the ThingWorx Java Edge SDK and Eclipse MQTT / SparkplugB libraries for encoding / decoding SparkplugB messages. Source code can be found in the 'src' directory [here](src/ptcsc/sparkplugbedge).
 
@@ -82,6 +82,10 @@ This section identifies which topics this remote "Thing" will subscribe to, and 
 >The entries in the "Property" field MUST be created as properties on the remote "Thing" within ThingWorx Composer, with the “Base Type” set to JSON.
 >There is no requirement to make these 'persistable' or 'logged'; see later for subscription code to unwrap these payloads.
 >Both '+' (single) and '#' (multiple) wildcards are allowed as defined in the MQTT standard for topic subscriptions.
+
+With such mappings in place, the "metrics" published as SparkplugB-encoded messages on the MQTT broker will be decoded and stored in ThingWorx as JSON-formatted data that can be subsequently parsed out onto "Thing" properties within the ThingWorx model:
+
+![json](https://github.com/user-attachments/assets/b1c9bd09-81e7-4feb-9bab-dd640b85d58a)
 
 ## Configuration - ApplicationDetails
 This section identifies information populated in the Node Birth certificate issued by ThingWorx when connecting to the Namespace if the previous setting **PublishBirthDeathCertificates** is set to true:
