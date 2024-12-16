@@ -17,20 +17,28 @@ The extension has been developed using the ThingWorx Java Edge SDK and Eclipse M
 # Installation
 Download the files [SparkplugBEdgeAgent.jar](SparkplugBEdgeAgent.jar) and [SparkplugBEdge.json](SparkplugBEdge.json). The JAR file is the edge SDK component itself, the JSON file configures the edge component to integrate to the UNS and ThingWorx.
 
-## Configuration
+# Configuration
 The edge component is configured by editing the [SparkplugBEdge.json](SparkplugBEdge.json) file downloaded. This has several sections:
-- ThingWorxConnectInfo: Connection to ThingWorx
-- SparkplugBInfo: SparkplugB namespace / group / node IDs and behaviour
-- MQTTConnectInfo: Connection to the MQTT broker
-- PropertyMappings: MQTT topic subscriptions for this remote "Thing" in ThingWorx
-- ApplicationDetails: ThngWorx details published in SparkplugB birth / death certificates onto the UNS
+- **ThingWorxConnectInfo**: Connection to ThingWorx
+- **SparkplugBInfo**: SparkplugB namespace / group / node IDs and behaviour
+- **MQTTConnectInfo**: Connection to the MQTT broker
+- **PropertyMappings**: MQTT topic subscriptions for this remote "Thing" in ThingWorx
+- **ApplicationDetails**: ThngWorx details published in SparkplugB birth / death certificates onto the UNS
 
-### Configuration - ThingWorxConnectInfo
+## Configuration - ThingWorxConnectInfo
 This section defines the following parameters:
-- ServerURL: The URL for the ThingWorx server that the edge component connects to e.g. "ws://localhost:8080/Thingworx/WS". Change ‘ws:’ to ‘wss:’ for ThingWorx environments that have a server certificate.
-- AppKey: Generate an Application Key in ThingWorx Composer and copy the generated key value here.
-- RemoteThingName: This is the name of the remote “Thing” that will be recognised by ThingWorx.
-- ValueUpdateTimeout: The timeout value in seconds for ThingWorx property value updates.
+- **ServerURL**: The URL for the ThingWorx server that the edge component connects to e.g. "ws://localhost:8080/Thingworx/WS". Change ‘ws:’ to ‘wss:’ for ThingWorx environments that have a server certificate.
+- **AppKey**: Generate an Application Key in ThingWorx Composer and copy the generated key value here.
+- **RemoteThingName**: This is the name of the remote “Thing” that will be recognised by ThingWorx.
+- **ValueUpdateTimeout**: The timeout value in seconds for ThingWorx property value updates.
+
+## Configuration - SparkplugBInfo
+This section defines the following parameters:
+- **Namespace**: Set this to "spBv1.0" for SparkplugB specification.
+- **GroupID**: Identify name of the logical grouping that ThingWorx will appear in within the MQTT topic structure on the UNS.
+- **NodeID**: Identifies the "Edge of Network" node name that ThingWorx will appear in within the MQTT topic structure on the UNS.
+- **CompressedMessages**: Set to true or false - specify whether message exchanges with the MQTT broker will use GZIP compression.
+- **PublishBirthDeathCertificates**: Set to true or false - specify whether ThingWorx will publish SparkplugB birth / death certificates to the MQTT broker.
 
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
