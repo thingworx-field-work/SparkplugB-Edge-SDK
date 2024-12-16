@@ -12,6 +12,11 @@ The extension has been developed using the ThingWorx Java Edge SDK and Eclipse M
 
 ![sparkplugb edge agent architecture](https://github.com/user-attachments/assets/985ed102-f542-498c-8f84-f058f4a86d17)
 
+# Installation
+Download the files [SparkplugBEdgeAgent.jar](SparkplugBEdgeAgent.jar) and [SparkplugBEdge.json](SparkplugBEdge.json). The JAR file is the agent itself, the JSON file configures the agent to integrate to the UNS and ThingWorx.
+
+## Configuration
+
 
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
