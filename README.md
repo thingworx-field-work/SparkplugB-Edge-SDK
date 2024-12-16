@@ -9,6 +9,8 @@ This is not core PTC product developed by PTC R&D and must be treated as a field
 The intent is for ThingWorx to integrate to UNS architectures both as an Industrial IIoT application development environment to consume from the UNS, and as a node to contribute new data to the UNS (e.g. OEE metrics).
 
 The extension has been developed using the ThingWorx Java Edge SDK and Eclipse MQTT / SparkplugB libraries for encoding / decoding SparkplugB messages.
+![sparkplugb edge agent architecture](https://github.com/user-attachments/assets/985ed102-f542-498c-8f84-f058f4a86d17)
+
 
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
