@@ -15,7 +15,7 @@ The extension has been developed using the ThingWorx Java Edge SDK and Eclipse M
 ![sparkplugb edge agent architecture](https://github.com/user-attachments/assets/985ed102-f542-498c-8f84-f058f4a86d17)
 
 # Installation
-Download the files [SparkplugBEdgeAgent.jar](SparkplugBEdgeAgent.jar) and [SparkplugBEdge.json](SparkplugBEdge.json). The JAR file is the edge SDK component itself, the JSON file configures the edge component to integrate to the UNS and ThingWorx.
+Download the files [SparkplugBEdgeAgent.jar](SparkplugBEdgeAgent.jar) and [SparkplugBEdge.json](SparkplugBEdge.json) to the same directory. The JAR file is the edge SDK component itself, the JSON file configures the edge component to integrate to the UNS and ThingWorx.
 
 # Configuration
 The edge component is configured by editing the [SparkplugBEdge.json](SparkplugBEdge.json) file downloaded. This has several sections:
@@ -78,13 +78,70 @@ This section identifies which topics this remote "Thing" will subscribe to, and 
 	}
  ],
 ```
-The entries in the "Property" field MUST be created as properties on the remote "Thing" within ThingWorx Composer, with the “Base Type” set to JSON. There is no requirement to make these 'persistable' or 'logged'; see later for subscription code to unwrap these payloads. Both '+' (single) and '#' (multiple) wildcards are allowed as defined in the MQTT standard for topic subscriptions.
+
+>The entries in the "Property" field MUST be created as properties on the remote "Thing" within ThingWorx Composer, with the “Base Type” set to JSON.
+>There is no requirement to make these 'persistable' or 'logged'; see later for subscription code to unwrap these payloads.
+>Both '+' (single) and '#' (multiple) wildcards are allowed as defined in the MQTT standard for topic subscriptions.
 
 ## Configuration - ApplicationDetails
 This section identifies information populated in the Node Birth certificate issued by ThingWorx when connecting to the Namespace if the previous setting **PublishBirthDeathCertificates** is set to true:
 - **Vendor**: Name of the software vendor for ThingWorx, default is "PTC".
 - **SoftwareVersion**: Version of ThingWorx deployed.
 - **ApplicationName**: Default to "ThingWorx"
+
+# Run the Edge SDK component
+Create an application launch file (e.g. "run.bat" on Windows platforms) in the same directory that the edge JAR and json files were downloaded to. In this file, specify the following:
+>java -jar ./SparkplugBEdgeAgent.jar ./SparkplugBEdge.json
+
+Then execute the file - you should see the edge component connect to both the MQTT broker and ThingWorx in it's logging output.
+
+# Configure ThingWorx Platform
+This section identifies additional configuration within ThingWorx Composer to expose the UNS to the ThingWorx "Thing Model".
+
+## Create Remote "Thing"
+1. Create a "Thing" in Composer using the Thing Template **RemoteThing** (or a Thing Template that inherits **RemoteThing**).
+2. Set it's "Identifier" to match what was entered in the **RemoteThingName** JSON configuration entry. If the edge component is connected, you should be able to find this using the pencil icon in the "Identifier" field.
+
+![remote thing](https://github.com/user-attachments/assets/d941a6e7-c8ed-4d0f-ac40-af6d793aa1ba)
+
+## Processing JSON Message Content
+1. Create JSON properties on the "Remote Thing" to match what was defined in the **PropertyMappings** JSON configuration entry
+
+![properties](https://github.com/user-attachments/assets/00b8daee-bc77-472c-874f-a7f2ee012d6a)
+
+2. Other “Things” can be created in ThingWorx to store the individual properties that are contained in the JSON payloads saved on the "Remote Thing" connected to the edge component. These other Things can subscribe to "Data Change" events on the JSON payload properties to parse the JSON and store the individual values. See example below:
+
+![subscription](https://github.com/user-attachments/assets/9b36b65f-b8f1-4686-ba4d-31384aead84a)
+
+For reference, the example subscription code above is given below for easier copy / paste:
+
+```javascript
+// Get metrics from UNS Payload
+let metrics = events["UNSGateway_DataChange_PLC_1_Payload"].eventData.newValue.value.metrics;
+
+//Create infotable for property updates with timestamps from edge
+let propertyUpdates = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+    infoTableName: "InfoTable",
+    dataShapeName: "NamedVTQ"
+});
+
+// Parse metrics
+metrics.forEach(row => {
+    if (me[row.name] != undefined) { // if metric is defined as a property on this Thing
+        // insert updates to infotable
+        propertyUpdates.AddRow({
+            name: row.name, 
+            time: row.timestamp, 
+            value: row.value 
+        });
+    }
+});
+
+// Persist updates
+me.UpdatePropertyValues({
+    values: propertyUpdates
+});
+```
 
 # Keywords
 ThingWorx SparkplugB UNS Unified Namespace 
