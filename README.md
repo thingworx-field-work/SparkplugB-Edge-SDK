@@ -52,7 +52,7 @@ This section defines the following parameters:
 - **TrustStorePath**: If validating the MQTT broker certificate, the path to the JKS store identified above.
 - **TrustStorePassword**: If validating the MQTT broker certificate, the password to access the JKS store identified above.
 - **RetainedMessages**: Standard MQTT client setting, set to true or false.
-- **QoS**: Standard MQTT client setting, identified Qulaity of Service that this edge component will use in MQTT exchanges.
+- **QoS**: Standard MQTT client setting, identified Quality of Service that this edge component will use in MQTT exchanges.
 - **AutomaticReconnect**: Standard MQTT client setting, set to true or false.
 - **CleanSession**: Standard MQTT client setting, set to true or false.
 - **ConnectionTimeout**: Standard MQTT client setting, specified in seconds.
