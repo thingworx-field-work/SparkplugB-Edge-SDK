@@ -10,7 +10,9 @@ The intent is for ThingWorx to integrate to UNS architectures both as an Industr
 
 The edge component connects to ThingWorx as a remote "Thing", with UNS topics published to JSON payload properties on the remote "Thing". This "Thing" also has a remote service to publish ThingWorx information back onto the UNS.
 
-The extension has been developed using the ThingWorx Java Edge SDK and Eclipse MQTT / SparkplugB libraries for encoding / decoding SparkplugB messages. Source code can be found in the 'src' directory [here](src/ptcsc/sparkplugbedge).
+The extension has been developed using the ThingWorx Java Edge SDK and Eclipse MQTT / SparkplugB libraries for encoding / decoding SparkplugB messages. Source code can be found in the 'src' directory [here](src/ptcsc/sparkplugbedge). The edge component also utilises the following public libraries:
+- [Eclipse Paho Java Client](https://github.com/eclipse-paho/paho.mqtt.java)
+- [Protocol Buffers Core](https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.2.0)
 
 ![sparkplugb edge agent architecture](https://github.com/user-attachments/assets/985ed102-f542-498c-8f84-f058f4a86d17)
 
