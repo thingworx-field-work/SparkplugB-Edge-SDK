@@ -64,14 +64,14 @@ This section identifies which topics this remote "Thing" will subscribe to, and 
 
 ```json
 "PropertyMappings": [
-	{
-		"Topic": "spBv1.0/PTC1/DDATA/SC/Sparkplug Device 1",
-		"Property": "PTC1_SC_SP_Device_1_Payload"
-	},
-	{
-		"Topic": "spBv1.0/PTC1/DDATA/SC/Sparkplug Device 2",
-		"Property": "PTC1_SC_SP_Device_2_Payload"
-	},
+  		{
+            "Topic": "spBv1.0/Plant A/DDATA/Production Line 1/PLC 1",
+            "Property": "Plant_A_Production_Line_1_PLC_1_Payload"
+        },
+  		{
+            "Topic": "spBv1.0/Plant A/DDATA/Production Line 1/PLC 2",
+            "Property": "Plant_A_Production_Line_1_PLC_2_Payload"
+        },
 	{
 		"Topic": "spBv1.0/+/DBIRTH/+/+",
 		"Property": "DBIRTH"
@@ -83,9 +83,9 @@ This section identifies which topics this remote "Thing" will subscribe to, and 
 >There is no requirement to make these 'persistable' or 'logged'; see later for subscription code to unwrap these payloads.
 >Both '+' (single) and '#' (multiple) wildcards are allowed as defined in the MQTT standard for topic subscriptions.
 
-With such mappings in place, the "metrics" published as SparkplugB-encoded messages on the MQTT broker will be decoded and stored in ThingWorx as JSON-formatted data that can be subsequently parsed out onto "Thing" properties within the ThingWorx model:
+With such mappings in place, the "metrics" published as SparkplugB-encoded messages on the MQTT broker will be decoded and stored in ThingWorx as JSON-formatted data that can be subsequently parsed out onto "Thing" properties within the ThingWorx model. The topic name is also ingested into the JSON payload stored on the "Thing" property:
 
-![json](https://github.com/user-attachments/assets/b1c9bd09-81e7-4feb-9bab-dd640b85d58a)
+![image](https://github.com/user-attachments/assets/483e0d14-3cc1-4b2a-83e5-a71c22bc66b4)
 
 ## Configuration - ApplicationDetails
 This section identifies information populated in the Node Birth certificate issued by ThingWorx when connecting to the Namespace if the previous setting **PublishBirthDeathCertificates** is set to true:
