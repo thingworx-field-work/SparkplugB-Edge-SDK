@@ -111,7 +111,7 @@ This section identifies additional configuration within ThingWorx Composer to ex
 ## Processing JSON Message Content
 1. Create JSON properties on the "Remote Thing" to match what was defined in the **PropertyMappings** JSON configuration entry
 
-![image](https://github.com/user-attachments/assets/421453f6-9b11-4748-b997-2c9ab98a770e)
+![image](https://github.com/user-attachments/assets/eb6ed2b2-0cfa-48f8-a04f-b4120cf8d457)
 
 2. Other “Things” can be created in ThingWorx to store the individual properties that are contained in the JSON payloads saved on the "Remote Thing" connected to the edge component. These other Things can subscribe to "Data Change" events on the JSON payload properties to parse the JSON and store the individual values. See example below:
 
