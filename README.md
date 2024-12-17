@@ -66,11 +66,11 @@ This section identifies which topics this remote "Thing" will subscribe to, and 
 "PropertyMappings": [
   	{
         	"Topic": "spBv1.0/Plant A/DDATA/Production Line 1/PLC 1",
-        	"Property": "Plant_A_Production_Line_1_PLC_1_Payload"
+        	"Property": "PLC_1_Payload"
         },
   	{
 		"Topic": "spBv1.0/Plant A/DDATA/Production Line 1/PLC 2",
-        	"Property": "Plant_A_Production_Line_1_PLC_2_Payload"
+        	"Property": "PLC_2_Payload"
         },
 	{
 		"Topic": "spBv1.0/+/DBIRTH/+/+",
